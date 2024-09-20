@@ -108,8 +108,14 @@ export default {
   methods: {
     async fetchEmailhost() {
       try {
+        const token = localStorage.getItem("accessToken");
         const response = await axios.get(
-          `${import.meta.env.VITE_SERVER_URL}/configs/EMAIL_HOST`
+          `${import.meta.env.VITE_SERVER_URL}/adminconfigs/EMAIL_HOST`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         if (response.data.exists) {
           this.emailhostId = response.data.value._id;
@@ -162,7 +168,7 @@ export default {
         const token = localStorage.getItem("accessToken");
         if (this.emailhostId == "" && this.emailhost != "") {
           const response = await axios.post(
-            `${import.meta.env.VITE_SERVER_URL}/configs`,
+            `${import.meta.env.VITE_SERVER_URL}/adminconfigs`,
             {
               configname: "EMAIL_HOST",
               configvalue: this.emailhost,
@@ -170,7 +176,9 @@ export default {
           );
         } else if (this.emailhostId != "") {
           const response = await axios.patch(
-            `${import.meta.env.VITE_SERVER_URL}/configs/${this.emailhostId}`,
+            `${import.meta.env.VITE_SERVER_URL}/adminconfigs/${
+              this.emailhostId
+            }`,
             {
               configvalue: this.emailhost,
             }
@@ -209,7 +217,7 @@ export default {
           );
         } else if (this.emailpasswordId != "") {
           const response3 = await axios.patch(
-            `${import.meta.env.VITE_SERVER_URL}/configs/${
+            `${import.meta.env.VITE_SERVER_URL}/adminconfigs/${
               this.emailpasswordId
             }`,
             {

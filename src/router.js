@@ -6,7 +6,6 @@ import NewUser from "./pages/admin/AddUser.vue";
 import Register from "./pages/settings/Register.vue";
 import Signin from "./pages/signin/Signin.vue";
 import Resetpassword from "./pages/signin/Resetpassword.vue";
-import Resetemailpassword from "./pages/signin/Resetemailpassword.vue";
 import Changepassword from "./pages/signin/Changepassword.vue";
 import AccountSettings from "./pages/settings/Account.vue";
 import ServerSettings from "./pages/settings/Server.vue";
@@ -67,11 +66,6 @@ const router = createRouter({
       path: "/resetpassword",
       name: "Resetpassword",
       component: Resetpassword,
-    },
-    {
-      path: "/resetemailpassword",
-      name: "Resetemailpassword",
-      component: Resetemailpassword,
     },
     {
       path: "/changepassword/:id",

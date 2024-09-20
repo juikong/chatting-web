@@ -72,7 +72,7 @@ export default {
     };
   },
   methods: {
-    async registerAdmin() {
+    async sendResetLink() {
       try {
         const response = await axios.post(
           `${import.meta.env.VITE_SERVER_URL}/users/passwordreset`,

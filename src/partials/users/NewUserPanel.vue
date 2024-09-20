@@ -212,6 +212,22 @@ export default {
           }
         );
         alert("User updated successfully!");
+        if (this.sendemail == "Yes") {
+          const response2 = await axios.post(
+            `${import.meta.env.VITE_SERVER_URL}/users/newuser`,
+            {
+              serverurl: import.meta.env.VITE_SERVER_URL,
+              email: this.email,
+              username: this.username,
+              password: this.password,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+        }
         this.$router.push({ name: "Users" });
       } catch (error) {
         console.error("Error updating user:", error);

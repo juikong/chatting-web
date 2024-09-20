@@ -64,13 +64,6 @@
             <div class="flex items-center justify-between mb-4">
               <div class="mr-1">
                 <router-link
-                  v-if="emailhost == ''"
-                  class="text-sm underline hover:no-underline"
-                  to="/resetemailpassword"
-                  >Forgot Password?</router-link
-                >
-                <router-link
-                  v-else
                   class="text-sm underline hover:no-underline"
                   to="/resetpassword"
                   >Forgot Password?</router-link
@@ -99,26 +92,10 @@ export default {
     return {
       email: "",
       password: "",
-      emailhost: "",
       errorMessage: "",
     };
   },
-  mounted() {
-    this.fetchEmailhost();
-  },
   methods: {
-    async fetchEmailhost() {
-      try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_SERVER_URL}/configs/EMAIL_HOST`
-        );
-        if (response.data.exists) {
-          this.emailhost = response.data.value.configvalue;
-        }
-      } catch (error) {
-        console.error("Error fetching Email Host:", error);
-      }
-    },
     async signin() {
       try {
         const response = await axios.post(
